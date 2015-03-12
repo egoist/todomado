@@ -1,6 +1,6 @@
 {
   "name": "todo.md",
-  "version": "0.1.01",
+  "version": "0.1.2",
   "description": "Command-line todo made easy",
   "main": "lib/index.js",
   "bin": {
@@ -19,9 +19,9 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "colorful": "^2.1.0",
-    "hr": "^0.1.3",
     "line-reader": "^0.2.4",
-    "minimist": "^1.1.1"
+    "minimist": "^1.1.1",
+    "trim": "0.0.1"
   },
   "devDependencies": {
     "coffee-script": "^1.9.1",

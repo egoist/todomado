@@ -1,11 +1,12 @@
 fs = require 'fs'
 lineReader = require 'line-reader'
-hr = require 'hr'
-chalk = require 'chalk'
+trim = require 'trim'
 symbol = require('./symbol')
+sep = require './sep'
 cwd = process.cwd()
 encoding = 'utf-8'
 filename = cwd + '/TODO.md'
+lineNumber = argv._[0]
 
 todo = module.exports =
   
@@ -13,12 +14,12 @@ todo = module.exports =
     fs.exists filename, (exists) ->
       if not exists
         console.log chalk.red 'You don\'t have any TODO.'
-        console.log chalk.cyan '     usage: $ todo add -m "what am i going todo"'
+        console.log '      usage:' + chalk.cyan ' $ todo add -m "what am i going todo"'
         return
       else
         i = 0
         lineReader.eachLine filename, (line, last) ->
-          hr.hr('-')
+          hr()
           if symbol.check line
             mark = chalk.green i
           else
@@ -26,7 +27,7 @@ todo = module.exports =
           console.log mark + '.' + symbol.clean line
           i++
         .then ->
-          hr.hr('-')
+          hr()
 
   init: ->
 
@@ -36,32 +37,90 @@ todo = module.exports =
     chalk.green(' to update it!')
 
   add: ->
-    if not argv.m
-      console.log 'No todo given'
+    if not argv._[1]
+      console.log chalk.red 'No todo given!'
       return
     fs.exists filename, (exists) ->
       if not exists
-        init(argv.m)
+        init(argv._[1])
         console.log chalk.green('Added, It\'s you first TODO!')
       else
-        fs.appendFileSync filename, '- [ ] ' + argv.m + '\n', encoding
+        fs.appendFileSync filename, '- [ ] ' + argv._[1] + '\n', encoding
         console.log chalk.green('You added a new TODO, Cheers!')
 
   modify: ->
-    console.log 'modify'
-    lineNumber = argv._[0]
-    lines = []
-    i = 0
-    lineReader.eachLine filename, (line, last) ->
-      lines[i] = line
-      i++
-    .then ->
-      lines[lineNumber] = '- [ ] ' + argv.m
-      fs.writeFileSync filename, lines.join('\n'), encoding
-      console.log chalk.green 'It\'s modified!'
+    modifyOrDelete 'modify'
+
+  drop: ->
+    modifyOrDelete 'delete'
+
+  done: ->
+    doneOrUndone 'done'
+
+  undone: ->
+    doneOrUndone 'undone'
+
 
 init = (item) ->
   content = '- [ ] ' + item + '\n'
   fs.writeFileSync filename, content, encoding
 
+modifyOrDelete = (type) ->
+  lines = []
+  i = 0
+  lineReader.eachLine filename, (line, last) ->
+    lines[i] = line
+    i++
+  .then ->
+    if not isTask lines
+      return
+    if type is 'modify'
+      lines[lineNumber] = '- [ ] ' + argv.m
+      fs.writeFileSync filename, lines.join('\n') + '\n', encoding
+      console.log chalk.green 'It\'s been modified!'
+    else if type is 'delete'
+      position = lines.indexOf lines[lineNumber]
+      lines.splice position, 1
+      newFile = lines.join('\n') + '\n'
+      if trim(newFile) is ''
+        newFile = ''
+      fs.writeFileSync filename, newFile, encoding
+      console.log chalk.green 'Task #' + lineNumber + ' is deleted!'
 
+doneOrUndone = (type) ->
+  lines = []
+  i = 0
+  lineReader.eachLine filename, (line, last) ->
+    lines[i] = line
+    i++
+  .then ->
+    if not isTask lines
+      return
+    status = symbol.getStatus lines[lineNumber]
+    if type is status
+      console.log chalk.magenta 'You didn\'t make any change, ' + status + ' is still ' + status
+      return
+    else if type is 'done'   
+      newLine = replaceByRange lines[lineNumber], 0, 5, '- [x]'
+      console.log 'The following task is ' + chalk.green('done') + ' now:'
+    else if type is 'undone'
+      newLine = replaceByRange lines[lineNumber], 0, 5, '- [ ]'
+      console.log 'The following task is ' + chalk.green('undone') + ' now:'
+    lines[lineNumber] = newLine
+    fs.writeFileSync filename, lines.join('\n') + '\n', encoding
+    console.log chalk.black.bgYellow ' ' + symbol.clean lines[lineNumber] + ' '
+
+replaceByRange = (string, start, end, newString) ->
+  string.substring(0, start) +
+  newString +
+  string.substring end
+
+hr = ->
+  console.log chalk.gray sep '-'
+
+isTask = (lines) ->
+  position = lines.indexOf lines[lineNumber]
+  if not ~position
+    console.log chalk.red 'Can\'t find task in this line!'
+    return false
+  return true
