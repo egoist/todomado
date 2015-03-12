@@ -1,4 +1,4 @@
-# todo.md
+# todomado
 
 ![screenshot](http://i2.tietuku.com/c82c6c7d2301aed0.gif)
 
@@ -17,7 +17,7 @@
 Use `npm` please:
 
 ```
-sudo npm install -g todo.md
+sudo npm install -g todomado
 ```
 
 ## Usage

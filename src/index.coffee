@@ -16,7 +16,7 @@ module.exports = (argv) ->
   else if argv.d
     todo.drop()
   else if argv.v
-    console.log 'todo.md ~ ' + chalk.cyan require('../package').version
+    console.log 'todomado ~ ' + chalk.cyan require('../package').version
   else if argv.done
     todo.done()
   else if argv.undone
