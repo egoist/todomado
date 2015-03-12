@@ -1,1 +1,2 @@
-- [ ] benchmark test
+- [ ] GitHub push trigger
+- [ ] set task progress
