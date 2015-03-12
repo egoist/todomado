@@ -41,7 +41,21 @@ $ todo 0 -d
 ## Finished / Unfinished a task
 $ todo 0 done[, --done]
 $ todo 0 undone[, --undone]
+
 ```
+
+### Global TODO.md
+
+Wow! Sounds awesome! You can have a todo list globally instead of using in a project directory.
+
+Just by passing an arguement `-g`, just like:
+
+```bash
+todo -g
+todo add "global todo item"
+```
+
+These todos will be stored in your home directory as `TODO.md`, in OS X it is `/Users/$whoami`, wherever you are just pass `-g` to make magic.
 
 ## License
 

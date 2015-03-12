@@ -5,8 +5,9 @@ symbol = require('./symbol')
 sep = require './sep'
 cwd = process.cwd()
 encoding = 'utf-8'
-filename = cwd + '/TODO.md'
+home = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
 lineNumber = argv._[0]
+filename = if argv.g then home + '/TODO.md' else cwd + '/TODO.md'
 
 todo = module.exports =
   

@@ -1,6 +1,6 @@
 {
   "name": "todo.md",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Command-line todo made easy",
   "main": "lib/index.js",
   "bin": {
