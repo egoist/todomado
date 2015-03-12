@@ -31,7 +31,7 @@ sudo npm install -g todomado
 $ todo -v
 
 # add
-$ todo add -m "to have some benchmark tests"
+$ todo add "to have some benchmark tests"
 
 # list
 $ todo 
