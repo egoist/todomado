@@ -52,7 +52,7 @@ Just by passing an arguement `-g`, just like:
 
 ```bash
 todo -g
-todo add "global todo item"
+todo add "global todo item" -g
 ```
 
 These todos will be stored in your home directory as `TODO.md`, in OS X it is `/Users/$whoami`, wherever you are just pass `-g` to make magic.
