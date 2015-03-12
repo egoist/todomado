@@ -1,6 +1,6 @@
 {
   "name": "todomado",
-  "version": "0.2.21",
+  "version": "0.2.31",
   "description": "Command-line todo made easy",
   "main": "lib/index.js",
   "bin": {
@@ -18,7 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.0.0",
-    "todomado": "^2.1.0",
     "line-reader": "^0.2.4",
     "minimist": "^1.1.1",
     "trim": "0.0.1"
