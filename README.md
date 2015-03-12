@@ -1,6 +1,6 @@
 # todo.md
 
-- [x] You made up you mind to create a todo?
+- [x] You made up your mind to create a todo?
 
 - [x] Update the body of it?
 
@@ -19,7 +19,7 @@ $ todo add -m "to have some benchmark tests"
 $ todo 
 
 # Modify by task number
-$ todo 0 -m "to have some benchmark tests"
+$ todo 0 -m "to have some other benchmark tests"
 ```
 
 ## License
