@@ -1,6 +1,6 @@
 # todo.md
 
-![screenshot](http://i2.tietuku.com/770df0328fd6f8e6.gif)
+![screenshot](http://i2.tietuku.com/c82c6c7d2301aed0.gif)
 
 - [x] You made up your mind to create a todo?
 
