@@ -1,2 +1,3 @@
 - [ ] GitHub push trigger
 - [ ] set task progress
+- [ ] todo history stat
