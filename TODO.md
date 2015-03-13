@@ -1,3 +1,4 @@
 - [ ] GitHub push trigger
 - [ ] set task progress
 - [ ] todo history stat
+- [ ] add option for settings TODO.md save path, for example you want to save it to dropbox folder to sync it.
