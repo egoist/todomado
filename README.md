@@ -18,7 +18,7 @@ Use `npm` please:
 
 [![NPM version](https://img.shields.io/npm/v/todomado.svg?style=flat)](https://www.npmjs.com/package/todomado)
 [![NPM download](https://img.shields.io/npm/dm/todomado.svg?style=flat)](https://www.npmjs.com/package/todomado)
-[![David Status](https://david-dm.org/kchanzen/todomado.svg)](https://david-dm.org/kchanzen/todomado)
+[![David Status](https://david-dm.org/touka0/todomado.svg)](https://david-dm.org/touka0/todomado)
 
 ```
 sudo npm install -g todomado
